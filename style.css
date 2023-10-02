@@ -1,4 +1,13 @@
-h1 {
+* {
+    /* background-color: lightgreen; */
+}
+
+header {
     text-align: center;
     background-color: tan;
+}
+
+.btn-primary {
+    background-color: plum;
+    text-align: end;
 }
