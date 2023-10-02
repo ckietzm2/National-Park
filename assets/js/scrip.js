@@ -10,47 +10,47 @@ var state = ""
 
 
 
-$("#search").on("click",function(event) {
-    event.preventDefault()
-    
-    state = $("#state-name").val()
-  
-  
-  state=state.toLowerCase()
+$("#search").on("click", function (event) {
+  event.preventDefault()
 
-  
-  
-      if (state === "") {
-        alert("Please enter valid state")
-      }
-      else if (state != "") {
-        
-        getDataAPI()
-      }
-  
-  
-  })
+  state = $("#state-name").val()
+
+
+  state = state.toLowerCase()
+
+
+
+  if (state === "") {
+    alert("Please enter valid state")
+  }
+  else if (state != "") {
+
+    getDataAPI()
+  }
+
+
+})
 
 function getDataAPI() {
 
-    parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode='+state+'&api_key=1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX'
+  parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX'
 
-fetch(requestURL)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-console.log(data)
+  fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
 
-  })
+    })
 
   fetch(parksURL)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data2) {
-console.log(data2)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data2) {
+      console.log(data2)
 
-  })
+    })
 
 }
