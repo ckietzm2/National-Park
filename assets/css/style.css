@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(224, 224, 213);
+}
+#header {
+    text-align: center;
+    background-image: linear-gradient(to right, tan, darkgreen);
+    padding: 5px;
+}
+
+#state-name {
+    margin-top: 10px;
+}
+
+#search-btn {
+    background-color: rgb(83, 45, 45);
+    text-align: end;
+    margin: 10px;
+    color: whitesmoke;
+}
+
