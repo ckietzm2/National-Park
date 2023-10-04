@@ -1,38 +1,31 @@
-// var weatherURL = "https://api.openweathermap.org"
+var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX";
+var selectedParkNameEl = document.getElementById("selectedParkName");
+var forecastContainer = document.querySelector(".five-day-forecast");
 
-// var apiKeyWeather = "2deeb2a69137fff43aae291e7205b285"
-var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX"
 
-// var parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=me&api_key=1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX'
-// var requestURL = "http://api.openweathermap.org/data/2.5/forecast?appid=c04c273159790588c5d89056e8655cce&units=imperial&q=chicago"
 document.addEventListener("DOMContentLoaded", function () {
-
-  var state = ""
-  var parkList = $("#park-list")
-  var savedStates = [];
+  var state = "";
   var parkList = $("#park-list");
-  var parkSelected = document.querySelector(".park-selected")
-  var searchResults = document.querySelector(".search-results")
-  var lat = 0
-  var lon = 0
-  console.log(lat);
-  var checkBtn = 0
+  var savedStates = [];
+  var parkSelected = document.querySelector(".park-selected");
+  var searchResults = document.querySelector(".search-results");
+  var favList = $("#fav");
+
 
   $("#search-btn").on("click", function (event) {
-    event.preventDefault()
+    event.preventDefault();
     state = $("#state-name").val().trim().toLowerCase();
-    // state = state.toLowerCase()
 
     if (state === "") {
-      alert("Please enter valid state initials")
+      alert("Please enter valid state initials");
+    } else {
+      getDataAPI();
     }
-    else if (state != "") {
-      getDataAPI()
-    }
-  })
+
+  });
 
   function getDataAPI() {
-    parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks
+    parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks;
 
     fetch(parksURL)
       .then(function (response) {
@@ -41,24 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (data) {
         parkList.empty();
         if (data.total === 0) {
-          parkList.append("<p>No parks fouund for this state.</p>");
+          parkList.append("<p>No parks found for this state.</p>");
         } else {
           for (let i = 0; i < data.total; i++) {
-            var parkNames = data.data[i].fullName
+            var parkNames = data.data[i].fullName;
             var button = $("<button>");
             button.text(parkNames);
             button.attr("type", "button");
             button.addClass("park-btn");
-            checkBtn = i
-            lat = data.data[i].latitude
-            lon = data.data[i].longitude
-            lat = parseFloat(lat)
-            lat = lat.toFixed(4)
-            lon = parseFloat(lon)
-            lon = lon.toFixed(4)
-            console.log(lat)
-            console.log(lon)    
-            button.val()
 
             var listItem = $("<li>").append(button);
 
@@ -66,34 +49,51 @@ document.addEventListener("DOMContentLoaded", function () {
           }
 
           $(".park-btn").on("click", function (event) {
+            var selectedParkName = $(this).text();
+            // store in local storage
+            localStorage.setItem('selectedPark', selectedParkName);
+
+            // display the selected park name on page
+            selectedParkNameEl.textContent = selectedParkName;
+
+            // Fetch forecast data
+            fetchForecastData();
+
             searchResults.style.display = "none";
             parkSelected.style.display = "block";
-            event.preventDefault() 
+            event.preventDefault();
+          });
 
-            selectedParkLat = data.data[$(this).index()].latitude;
-            selectedParkLon = data.data[$(this).index()].longitude;
-        
-            // Now you can use selectedParkLat and selectedParkLon as needed
-            console.log(selectedParkLat);
-            console.log(selectedParkLon);
-        
-            // Call the function to fetch weather data with these values
-      
-            fetchForecastData()
-          })
+          // check if there is a selected park in local storage
+          var storedSelectedPark = localStorage.getItem('selectedPark');
+          if (storedSelectedPark) {
+            // display selected park name on the page
+            selectedParkNameEl.textContent = storedSelectedPark;
+
+            // Fetch forecast data
+            fetchForecastData();
+          }
         }
       });
 
   }
 
   function fetchForecastData() {
+    // You need to define lat and lon values for the forecast data
+    // For now, I'm assuming some default values, but you may need to replace these with the actual latitude and longitude of the selected park.
+    var lat = 40.7128;
+    var lon = -74.0060;
+
     var apiKey = "a10bc788276a7c7ca6f89df126f2779a";
-    // var cityName = document.getElementById("city-input").value;
+
     var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+
 
     fetch(fiveDayUrl)
       .then(function (response) {
         if (!response.ok) {
+
+          throw new Error('Network response was not ok');
 
         }
         return response.json();
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var filteredObjects = data.list.filter(function (item) {
           return item.dt_txt.endsWith("15:00:00");
-          console.log(filteredObjects);
         });
 
         var firstFiveObjects = filteredObjects.slice(0, 5);
@@ -140,24 +139,62 @@ document.addEventListener("DOMContentLoaded", function () {
           forecastDiv.append(forecastList)
           forecastContainer.append(forecastDiv);
         });
+      })
+      .catch(function (error) {
+        console.error('There was a problem with the fetch operation:', error);
       });
   }
 
-  // favorite buttons
-  var input = document.querySelector("#state-name");
-  var fav1 = document.getElementById("fav-1")
+
+  // "Save Park" button functionality
+  $("#save-park-btn").on("click", function () {
+    var selectedParkName = selectedParkNameEl.textContent;
+    var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
+
+    // Check if the park is already saved
+    if (!savedParks.includes(selectedParkName)) {
+      savedParks.push(selectedParkName);
+      localStorage.setItem('savedParks', JSON.stringify(savedParks));
+
+      // Render the saved park buttons
+      renderSavedParks();
+    } else {
+      alert("Park already saved!");
+    }
+  });
 
 
+  // Render the saved park buttons
+  function renderSavedParks() {
+    favList.empty();
+    var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
 
-  function saveSearchHistory() {
-    console.log(input.value);
-    // searchHistory.push(search);
-    var searchTerm = input.value.trim();
-    savedStates.push(searchTerm);
-    localStorage.setItem('search-history', JSON.stringify(savedStates));
+    savedParks.forEach(function (parkName) {
+      var button = $("<button>");
+      button.text(parkName);
+      button.attr("type", "button");
+      button.addClass("saved-park-btn");
 
+      var listItem = $("<li>").append(button);
+
+      favList.append(listItem);
+    });
+
+    // Add click event for saved park buttons
+    $(".saved-park-btn").on("click", function () {
+      var selectedParkName = $(this).text();
+      // display the selected park name on page
+      selectedParkNameEl.textContent = selectedParkName;
+
+      // Fetch forecast data
+      fetchForecastData();
+
+      searchResults.style.display = "none";
+      parkSelected.style.display = "block";
+    });
   }
-  fav1.addEventListener("click", saveSearchHistory);
-})
 
+  // Render saved parks on page load
+  renderSavedParks();
+})
 

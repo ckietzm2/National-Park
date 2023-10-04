@@ -3,19 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>National Park USA</title>
     <link rel="stylesheet" href="./assets/css/style.css">
-    </Link>
+    <!-- Remove the incorrect </Link> tag -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <header id="header">
-        <h1 class="text-6xl"> National Park Visit</h1>
-        <input id="state-name" type="text" maxlength=2 placeholder="State Initials"></input>
+        <h1 class="text-6xl">National Park Visit</h1>
+        <input id="state-name" type="text" maxlength="2" placeholder="State Initials"></input>
         <button id="search-btn" type="submit">Search</button>
+
+        <nav class="flex justify-center space-x-4">
+            <a href="file:///Users/taylor/Desktop/bootcamp-homework/National-Park/index.html?"
+                class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Home</a>
+            <a href="https://tailwindcomponents.com/component/search-bar"
+                class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Favorites</a>
+        </nav>
     </header>
 
     <main>
@@ -28,32 +34,42 @@
                 </div>
             </section>
             <aside id="fav-list">
-                <h2 id="fav-header">Favorties</h2>
-                <div></div>
-                <ul cid="fav">
-                    <button type="button" id="fav-1"
-                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
-                        1</button>
-                    <button type="button"
-                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
-                        2</button>
-                    <button type="button"
-                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
-                        3</button>
 
-                </ul>
+                <h2 id="fav-header">Favorties★</h2>
+                <div>
+                    <ul id="fav">
+                        <button type="button" id="fav-1"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
+                            1</button>
+                        <button type="button"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
+                            2</button>
+                        <button type="button"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">fav
+                            3</button>
+
+                    </ul>
                 </div>
+
             </aside>
         </section>
         <section>
             <div class="park-selected">
                 <div>
                     <h5 class="text-2xl"><span><img id="park-img" src="" alt="Park Image"></span>Park Name</h5>
+                    <button id="save-park-btn" type="button">Save Park</button>
                     <ul class="park-details">
-                        <p id="desc">Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci tempora, nulla, ratione, eum unde porro cumque temporibus modi iste animi eveniet ipsa ea? Ratione cumque error inventore placeat modi ipsam.</p>
+
+                        <button id="button" class="bg-sky-500 hover:bg-sky-700 ...">
+                            Add To Favorites
+                          </button>
+                        <p id="desc">Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+                            tempora, nulla, ratione, eum unde porro cumque temporibus modi iste animi eveniet ipsa ea?
+                            Ratione cumque error inventore placeat modi ipsam.</p>
                         <p id="park-url">Website: www.test.test</p>
                         <p id="park-hours">Park hours: 9:00AM to 5:00PM</p>
                         <p id="entrance-fee">Park entrance fee: $10</p>
+
                     </ul>
                 </div>
                 <div>
