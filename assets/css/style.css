@@ -7,6 +7,10 @@ body {
     padding: 5px;
 }
 
+main {
+    margin:10px;
+}
+
 #state-name {
     margin-top: 10px;
 }
@@ -15,14 +19,33 @@ body {
     background-color: rgb(83, 45, 45);
     text-align: end;
     margin: 10px;
+    padding: 0 10px;
     color: whitesmoke;
+
 }
 
 .park-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
+    background-color: olive !important;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
     margin: 5px;
-    cursor: pointer;
+}
+
+
+h5 {
+    display: flex;
+
+}
+
+.park-details {
+    padding: 10px;
+}
+
+p {
+    padding: 5px 0;
+}
+
+.park-selected {
+    display: none;
 }
