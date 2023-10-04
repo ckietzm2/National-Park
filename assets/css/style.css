@@ -13,6 +13,10 @@ body {
     justify-content: space-between;
 }
 
+main {
+    margin:10px;
+}
+
 #state-name {
     margin-top: 10px;
 }
@@ -21,7 +25,35 @@ body {
     background-color: rgb(83, 45, 45);
     text-align: end;
     margin: 10px;
+    padding: 0 10px;
     color: whitesmoke;
+
+}
+
+.park-btn {
+    background-color: olive !important;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+
+
+h5 {
+    display: flex;
+
+}
+
+.park-details {
+    padding: 10px;
+}
+
+p {
+    padding: 5px 0;
+}
+
+.park-selected {
+    display: none;
 }
 
 section h2 {
@@ -48,4 +80,5 @@ section h2 {
     text-align: right;
     font-family: monospace;
 }
+
 
