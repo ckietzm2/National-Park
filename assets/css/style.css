@@ -1,0 +1,84 @@
+body {
+    background-color: rgb(224, 224, 213);
+}
+#header {
+    text-align: center;
+    background-image: linear-gradient(to right, tan, darkgreen);
+    padding: 5px;
+    font-family: monospace;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    margin:10px;
+}
+
+#state-name {
+    margin-top: 10px;
+}
+
+#search-btn {
+    background-color: rgb(83, 45, 45);
+    text-align: end;
+    margin: 10px;
+    padding: 0 10px;
+    color: whitesmoke;
+
+}
+
+.park-btn {
+    background-color: olive !important;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+
+
+h5 {
+    display: flex;
+
+}
+
+.park-details {
+    padding: 10px;
+}
+
+p {
+    padding: 5px 0;
+}
+
+.park-selected {
+    display: none;
+}
+
+section h2 {
+    font-size: 30px;
+}
+
+#search-results {
+    margin: 2rem;
+} 
+/* #search-header {
+    display: inline-flex;
+} */
+
+#fav-header {
+    font-size: 40px;
+    text-align: right;
+    font-family: monospace;
+    border: darkgreen 10px double;
+    display: inline-block;
+    padding: 10px;
+}
+
+#fav-list ul {
+    text-align: right;
+    font-family: monospace;
+}
+
+
