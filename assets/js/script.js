@@ -118,7 +118,7 @@ function fetchForecastData() {
 
   // favorite buttons
   var input = document.querySelector("#state-name");
-  var fav1 = document.getElementById("fav-1")
+  var fav1 = document.getElementById("#fav1")
   
   
   
