@@ -7,6 +7,7 @@ var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX"
 // var requestURL = "http://api.openweathermap.org/data/2.5/forecast?appid=c04c273159790588c5d89056e8655cce&units=imperial&q=chicago"
 
 var state = ""
+
 var parkList = $("#park-list");
 var parkSelected = document.querySelector(".park-selected")
 var searchResults = document.querySelector(".search-results")
@@ -115,11 +116,20 @@ function fetchForecastData() {
     });
 }
 
-// fetch(requestURL)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data)
+  // favorite buttons
+  var input = document.querySelector("#state-name");
+  var fav1 = document.getElementById("fav-1")
+  
+  
+  
+  function saveSearchHistory(){
+    console.log(input.value);
+    // searchHistory.push(search);
+    var searchTerm = input.value.trim();
+    savedStates.push(searchTerm);
+    localStorage.setItem('search-history', JSON.stringify(savedStates));
+    
+  }
+  fav1.addEventListener("click", saveSearchHistory);
 
-//   })
+

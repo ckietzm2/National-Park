@@ -5,6 +5,12 @@ body {
     text-align: center;
     background-image: linear-gradient(to right, tan, darkgreen);
     padding: 5px;
+    font-family: monospace;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
 }
 
 main {
@@ -49,3 +55,30 @@ p {
 .park-selected {
     display: none;
 }
+
+section h2 {
+    font-size: 30px;
+}
+
+#search-results {
+    margin: 2rem;
+} 
+/* #search-header {
+    display: inline-flex;
+} */
+
+#fav-header {
+    font-size: 40px;
+    text-align: right;
+    font-family: monospace;
+    border: darkgreen 10px double;
+    display: inline-block;
+    padding: 10px;
+}
+
+#fav-list ul {
+    text-align: right;
+    font-family: monospace;
+}
+
+
