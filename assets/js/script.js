@@ -2,6 +2,7 @@
 
 // var apiKeyWeather = "2deeb2a69137fff43aae291e7205b285"
 var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX"
+var selectedParkNameEl = document.getElementById("selectedParkName");
 
 // var parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=me&api_key=1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX'
 // var requestURL = "http://api.openweathermap.org/data/2.5/forecast?appid=c04c273159790588c5d89056e8655cce&units=imperial&q=chicago"
@@ -54,10 +55,22 @@ document.addEventListener("DOMContentLoaded", function() {
           }
   
           $(".park-btn").on("click", function (event) {
+            var selectedParkName = $(this).text();
+            // store in local storage
+            localStorage.setItem('selectedPark', selectedParkName);
+
+            // display the selected park name on page
+            selectedParkNameEl.textContent = selectedParkName;
             searchResults.style.display = "none";
             parkSelected.style.display = "block";
             event.preventDefault()
-          })
+          });
+          // check if there is a selected park in local storage
+          var storedSelectedPark = localStorage.getItem('selectedPark');
+          if (storedSelectedPark) {
+            // display selected park name on the page
+            selectedParkNameEl.textContent = storedSelectedPark;
+          }
         }
       });
   
@@ -130,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(input.value);
       // searchHistory.push(search);
       var searchTerm = input.value.trim();
+      
       savedStates.push(searchTerm);
       localStorage.setItem('search-history', JSON.stringify(savedStates));
       
