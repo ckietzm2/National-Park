@@ -1,6 +1,14 @@
 body {
     background-color: rgb(224, 224, 213);
 }
+
+header nav {
+    text-align: center;
+    font-family: monospace;
+    font-size: 25px;
+    color: black;
+}
+
 #header {
     text-align: center;
     background-image: linear-gradient(to right, tan, darkgreen);
@@ -14,7 +22,7 @@ body {
 }
 
 main {
-    margin:10px;
+    margin: 10px;
 }
 
 #state-name {
@@ -62,10 +70,13 @@ section h2 {
 
 #search-results {
     margin: 2rem;
-} 
-/* #search-header {
-    display: inline-flex;
-} */
+}
+
+#search-header {
+    display: inline-block;
+}
+
+
 
 #fav-header {
     font-size: 40px;
@@ -74,11 +85,26 @@ section h2 {
     border: darkgreen 10px double;
     display: inline-block;
     padding: 10px;
+    float: right;   
 }
+
 
 #fav-list ul {
     text-align: right;
     font-family: monospace;
+    padding-top: 120px;
+    float: end;
 }
 
+#button {
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50px;
+  }
 
