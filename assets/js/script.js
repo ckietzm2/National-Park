@@ -3,6 +3,7 @@ var selectedParkNameEl = document.getElementById("selectedParkName");
 var forecastContainer = document.querySelector(".five-day-forecast");
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
   var state = "";
   var parkList = $("#park-list");
@@ -10,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var parkSelected = document.querySelector(".park-selected");
   var searchResults = document.querySelector(".search-results");
   var favList = $("#fav");
-
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
     state = $("#state-name").val().trim().toLowerCase();
@@ -20,7 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
       getDataAPI();
     }
   });
-
+  
+  $(document).on('keypress',function(e){
+    if(e.which == 13){
+      state = $("#state-name").val().trim().toLowerCase();
+      if (state === "") {
+        alert("Please enter valid state initials");
+       }else {
+        getDataAPI();
+      }
+    
+    }
+  });
+  
   function getDataAPI() {
     parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks;
 
@@ -173,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $(".saved-park-btn").on("click", function () {
       var selectedParkName = $(this).text();
       // display the selected park name on page
-      selectedParkNameEl.textContent = selectedParkName;
+      // selectedParkNameEl.textContent = selectedParkName;
 
       // Fetch forecast data
       fetchForecastData();
