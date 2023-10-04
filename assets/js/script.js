@@ -13,11 +13,15 @@ document.addEventListener("DOMContentLoaded", function() {
   var parkList = $("#park-list");
   var parkSelected = document.querySelector(".park-selected")
   var searchResults = document.querySelector(".search-results")
+  var lat = 0
+  var lon = 0
+  var checkBtn = 0
+  
   
   $("#search-btn").on("click", function (event) {
     event.preventDefault()
     state = $("#state-name").val().trim().toLowerCase();
-    // state = state.toLowerCase()
+   
   
     if (state === "") {
       alert("Please enter valid state initials")
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function (data) {
+        console.log(data)
         parkList.empty();
         if (data.total === 0) {
           parkList.append("<p>No parks fouund for this state.</p>");
@@ -44,19 +49,35 @@ document.addEventListener("DOMContentLoaded", function() {
           for (let i = 0; i < data.total; i++) {
             var parkNames = data.data[i].fullName
             var button = $("<button>");
+            
+
+          
             button.text(parkNames);
             button.attr("type", "button");
             button.addClass("park-btn");
+            button.val(i)
+          
+            lat = data.data[i].latitude
+            lon = data.data[i].longitude
+            lat = parseFloat(lat)
+            lat = lat.toFixed(4)
+            lon = parseFloat(lon)
+            lon = lon.toFixed(4)
   
             var listItem = $("<li>").append(button);
   
             parkList.append(listItem);
           }
   
-          $(".park-btn").on("click", function (event) {
-            searchResults.style.display = "none";
-            parkSelected.style.display = "block";
-            event.preventDefault()
+          ($(".park-btn")).on("click", function () {
+            
+            console.log(button);
+            console.log("Hello")
+            // searchResults.style.display = "none";
+    
+            // parkSelected.style.display = "block";
+            
+            // fetchForecastData()
           })
         }
       });
@@ -64,9 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   function fetchForecastData() {
-    var apiKey = "a10bc788276a7c7ca6f89df126f2779a";
+    
     // var cityName = document.getElementById("city-input").value;
-    var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon" + lon + "&appid=" + apiKey;
+    var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=2deeb2a69137fff43aae291e7205b285"
   
     fetch(fiveDayUrl)
       .then(function (response) {
@@ -76,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function (data) {
+        console.log(data)
         forecastContainer.innerHTML = "";
   
         var filteredObjects = data.list.filter(function (item) {
