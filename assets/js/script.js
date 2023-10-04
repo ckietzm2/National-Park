@@ -11,18 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var searchResults = document.querySelector(".search-results");
   var favList = $("#fav");
 
-
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
     state = $("#state-name").val().trim().toLowerCase();
-
-
     if (state === "") {
       alert("Please enter valid state initials");
     } else {
       getDataAPI();
     }
-
   });
 
   function getDataAPI() {
@@ -76,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       });
-
   }
 
   function fetchForecastData() {
@@ -86,16 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var lon = -74.0060;
 
     var apiKey = "a10bc788276a7c7ca6f89df126f2779a";
-
     var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-
 
     fetch(fiveDayUrl)
       .then(function (response) {
         if (!response.ok) {
-
           throw new Error('Network response was not ok');
-
         }
         return response.json();
       })
@@ -109,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var firstFiveObjects = filteredObjects.slice(0, 5);
 
         firstFiveObjects.forEach(function (targetObject, index) {
-
           var forecastDiv = document.createElement("div");
           var forecastList = document.createElement("ul");
           var forecastListItem1 = document.createElement("li");
@@ -146,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-
   // "Save Park" button functionality
   $("#save-park-btn").on("click", function () {
     var selectedParkName = selectedParkNameEl.textContent;
@@ -163,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Park already saved!");
     }
   });
-
 
   // Render the saved park buttons
   function renderSavedParks() {
@@ -197,5 +185,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Render saved parks on page load
   renderSavedParks();
-})
-
+});
