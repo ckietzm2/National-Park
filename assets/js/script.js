@@ -127,10 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 $(".text-2xl").text(parkFullName)
                 lat = selectedParkData.latitude;
                 lon = selectedParkData.longitude;
-                lat = parseFloat(lat)
-                lon = parseFloat(lon)
-                lat = lat.toFixed(4)
-                lon = lon.toFixed(4)
+                lat = parseFloat(lat).toFixed(4)
+                lon = parseFloat(lon).toFixed(4)
+                
               } else {
   
               }
