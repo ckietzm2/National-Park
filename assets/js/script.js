@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var parkWebsite = ""
   var parkFees = ""
   var parkHours = ""
+  var parkHoursLength = 0
+  var parkFeesLength = 0
+  var parkImage = ""
+  var parkImageCredit = ""
+  var parkImageTitle = ''
 
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
@@ -81,14 +86,44 @@ document.addEventListener("DOMContentLoaded", function () {
               if (selectedParkData) {
                 descriptionPark = selectedParkData.description
                 parkWebsite = selectedParkData.url
-                parkFees = selectedParkData.entranceFees
-                parkHours = selectedParkData.operatingHours
+                
+                parkHoursLength = selectedParkData.operatingHours.length
+                parkFeesLength = selectedParkData.entranceFees.length
+                parkImage = selectedParkData.images[0].url
+                parkImageCredit = selectedParkData.images[0].credit
+                parkImageTitle = selectedParkData.images[0].title
+
+                console.log(parkImage)
+                
+                if (parkHoursLength===0) {
+                  
+                  $("#park-hours").text("Park Hours: No Hours Listed")
+
+                }
+                if (parkHoursLength>0) {
+                  parkHours = selectedParkData.operatingHours[0].description
+                  $("#park-hours").text("Park Hours: " +parkHours)
+                }
+
+                if (parkFeesLength===0) {
+                  
+                  $("#entrance-fee").text("Entrance Fees: No Fees Listed")
+
+                }
+                if (parkFeesLength>0) {
+                  parkFees = selectedParkData.entranceFees[0].cost
+                  $("#entrance-fee").text("Entrance Fees: " +parkFees)
+                }
+                
+
+
                 parkFullName = selectedParkData.fullName
                 
-                $("#entrance-fee").text(parkFees)
+                $("#park-image").attr("src", selectedParkData.images[0].url);
+                $("#image-info").text(parkImageCredit + parkImageTitle);
                 $("#desc").text(descriptionPark)
-                $("#park-url").text(parkWebsite)
-                $("#park-hours").text(parkHours)
+                $("#park-url").attr("href", selectedParkData.url);
+                $("#park-url").text("Park Website: " + parkWebsite);
                 $(".text-2xl").text(parkFullName)
                 lat = selectedParkData.latitude;
                 lon = selectedParkData.longitude;
