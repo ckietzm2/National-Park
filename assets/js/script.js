@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (data) {
         forecastContainer.innerHTML = "";
 
-        console.log(data)
+        // console.log(data)
 
         var filteredObjects = data.list.filter(function (item) {
           return item.dt_txt.endsWith("15:00:00");
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       })
       .catch(function (error) {
-        console.error('There was a problem with the fetch operation:', error);
+        // console.error('There was a problem with the fetch operation:', error);
       });
   }
 
