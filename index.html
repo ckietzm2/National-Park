@@ -14,13 +14,11 @@
     <h1 class="text-6xl">National Park Visit</h1>
     <input id="state-name" type="text" maxlength="2" placeholder="State Initials"></input>
     <button id="search-btn" type="submit" class="bg-sky-500 hover:bg-sky-700 ...">Search</button>
-
     <nav class="flex justify-center space-x-4">
       <a href="./index.html"
         class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Home</a>
     </nav>
   </header>
-
   <main>
     <div id="my-modal" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -53,7 +51,6 @@
         </div>
       </div>
     </div>
-
     <div id="my-modal-save" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
       <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -85,7 +82,6 @@
         </div>
       </div>
     </div>
-
     <section class="container">
       <div class="search-results">
         <h2 id="search-header">Search Results</h2>
@@ -93,25 +89,13 @@
           <ul id="park-list"></ul>
         </div>
       </div>
-      <!-- Favorites on first page -->
       <div id="fav-list">
         <h2 id="fav-header">Favorties★</h2>
         <div>
           <div id="selected-park-info">
-
-
           </div>
           <ul id="fav">
             <span id="selectedParkName"></span>
-
-
-            <!-- <button type="button" id="fav-1"></button>
-
-
-            <button type="button" id="fav-1">fav 1</button>
-            <button type="button">fav 2</button>
-            <button type="button">fav 3</button>
-          </ul> -->
         </div>
       </div>
     </section>
@@ -119,9 +103,7 @@
       <div class="park-selected">
         <div>
           <h5 class="text-2xl"><span><img id="park-img" src="" alt="Park Image"></span>Park Name</h5>
-
           <button id="save-park-btn" type="button" class="bg-sky-500 hover:bg-sky-700">Add To Favorites</button>
-
           <ul class="park-details">
             <img id="park-image" src="" alt="Park Image">
             <p id="image-info"></p>
