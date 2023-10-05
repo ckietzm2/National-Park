@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var parkWebsite = ""
   var parkFees = ""
   var parkHours = ""
+  var parkHoursLength = 0
+  var parkFeesLength = 0
+  var parkImage = ""
+  var parkImageCredit = ""
+  var parkImageTitle = ''
 
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
@@ -69,36 +74,66 @@ document.addEventListener("DOMContentLoaded", function () {
             parkList.append(listItem);
           }
 
-          $(".park-btn").on("click", function (event) {
-            var selectedParkName = $(this).text();
-            // store in local storage
-            localStorage.setItem('selectedPark', selectedParkName);
+            $(".park-btn").on("click", function (event) {
+              var selectedParkName = $(this).text();
+              // store in local storage
+              localStorage.setItem('selectedPark', selectedParkName);
+  
+              var selectedParkData = data.data.find(function (park) {
+                return park.fullName === selectedParkName;
+              });
+  
+              if (selectedParkData) {
+                descriptionPark = selectedParkData.description
+                parkWebsite = selectedParkData.url
+                
+                parkHoursLength = selectedParkData.operatingHours.length
+                parkFeesLength = selectedParkData.entranceFees.length
+                parkImage = selectedParkData.images[0].url
+                parkImageCredit = selectedParkData.images[0].credit
+                parkImageTitle = selectedParkData.images[0].title
 
-            var selectedParkData = data.data.find(function (park) {
-              return park.fullName === selectedParkName;
-            });
+                console.log(parkImage)
+                
+                if (parkHoursLength===0) {
+                  
+                  $("#park-hours").text("Park Hours: No Hours Listed")
 
-            if (selectedParkData) {
-              descriptionPark = selectedParkData.description
-              parkWebsite = selectedParkData.url
-              parkFees = selectedParkData.entranceFees
-              parkHours = selectedParkData.operatingHours
-              parkFullName = selectedParkData.fullName
+                }
+                if (parkHoursLength>0) {
+                  parkHours = selectedParkData.operatingHours[0].description
+                  $("#park-hours").text("Park Hours: " +parkHours)
+                }
 
-              $("#entrance-fee").text(parkFees)
-              $("#desc").text(descriptionPark)
-              $("#park-url").text(parkWebsite)
-              $("#park-hours").text(parkHours)
-              $(".text-2xl").text(parkFullName)
-              lat = selectedParkData.latitude;
-              lon = selectedParkData.longitude;
-              lat = parseFloat(lat)
-              lon = parseFloat(lon)
-              lat = lat.toFixed(4)
-              lon = lon.toFixed(4)
-            } else {
+                if (parkFeesLength===0) {
+                  
+                  $("#entrance-fee").text("Entrance Fees: No Fees Listed")
 
-            }
+                }
+                if (parkFeesLength>0) {
+                  parkFees = selectedParkData.entranceFees[0].cost
+                  $("#entrance-fee").text("Entrance Fees: " +parkFees)
+                }
+                
+
+
+                parkFullName = selectedParkData.fullName
+                
+                $("#park-image").attr("src", selectedParkData.images[0].url);
+                $("#image-info").text(parkImageCredit + parkImageTitle);
+                $("#desc").text(descriptionPark)
+                $("#park-url").attr("href", selectedParkData.url);
+                $("#park-url").text("Park Website: " + parkWebsite);
+                $(".text-2xl").text(parkFullName)
+                lat = selectedParkData.latitude;
+                lon = selectedParkData.longitude;
+                lat = parseFloat(lat)
+                lon = parseFloat(lon)
+                lat = lat.toFixed(4)
+                lon = lon.toFixed(4)
+              } else {
+  
+              }
 
             // display the selected park name on page
             selectedParkNameEl.textContent = selectedParkName;
