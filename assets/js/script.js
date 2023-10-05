@@ -356,26 +356,34 @@ parkSelected.style.display = "block";
       });
   }
 
-  // "Save Park" button functionality
   $("#save-park-btn").on("click", function (e) {
     var selectedParkName = $(this).attr("data-name");
-    console.log($(this).attr("data-name"));
+    var selectedParkCode = $(this).attr("data-parkcode");
+  
     var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
-
-    // Check if the park is already saved
-    if (!savedParks.includes(selectedParkName)) {
+  
+    // Check if the park is already in favorites
+    var isParkAlreadySaved = savedParks.some(function (park) {
+      return park.name === selectedParkName;
+    });
+  
+    if (!isParkAlreadySaved) {
       var parkInfo = {
-        name : selectedParkName,
-        parkcode: $(this).attr("data-parkcode")
-      }
+        name: selectedParkName,
+        parkcode: selectedParkCode
+      };
       savedParks.push(parkInfo);
+  
+      // Store the updated favorites list in local storage
       localStorage.setItem('savedParks', JSON.stringify(savedParks));
+  
       // Render the saved park buttons
       renderSavedParks();
     } else {
       showModalSave();
     }
   });
+  
 
   // Render the saved park buttons
   function renderSavedParks() {
