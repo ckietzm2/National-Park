@@ -1,7 +1,3 @@
-// var lat = 0
-// var lon = 0
-// 
-
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -126,11 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // store in local storage
     localStorage.setItem('selectedPark', selectedParkName);
 
-    // var selectedParkData = data.data.find(function (park) {
-    //   return park.fullName === selectedParkName;
-    // });
 
-    // console.log(selectedParkData);
 
     var selectedParkData = data.data[0];
 
@@ -138,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     addToFavBtn.attr("data-name", selectedParkData.fullName);
     addToFavBtn.attr("data-parkcode", selectedParkData.parkCode);
 
-    // if (selectedParkData) {
+
       descriptionPark = selectedParkData.description
       parkWebsite = selectedParkData.url
       
@@ -186,9 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lon = parseFloat(lon)
       lat = lat.toFixed(4)
       lon = lon.toFixed(4)
-    // } else {
-
-    // }
+ 
 
   // display the selected park name on page
   selectedParkNameEl.textContent = selectedParkName;
@@ -218,11 +208,7 @@ function displayOnePark(parkcode) {
   // store in local storage
   localStorage.setItem('selectedPark', selectedParkName);
 
-  // var selectedParkData = data.data.find(function (park) {
-  //   return park.fullName === selectedParkName;
-  // });
-
-  // console.log(selectedParkData);
+ 
 
   var selectedParkData = data.data[0];
 
@@ -230,7 +216,7 @@ function displayOnePark(parkcode) {
   addToFavBtn.attr("data-name", selectedParkData.fullName);
   addToFavBtn.attr("data-parkcode", selectedParkData.parkCode);
 
-  // if (selectedParkData) {
+
     descriptionPark = selectedParkData.description
     parkWebsite = selectedParkData.url
     
@@ -240,7 +226,7 @@ function displayOnePark(parkcode) {
     parkImageCredit = selectedParkData.images[0].credit
     parkImageTitle = selectedParkData.images[0].title
 
-    console.log(parkImage)
+
     
     if (parkHoursLength===0) {
       
@@ -278,9 +264,6 @@ function displayOnePark(parkcode) {
     lon = parseFloat(lon)
     lat = lat.toFixed(4)
     lon = lon.toFixed(4)
-  // } else {
-
-  // }
 
 // display the selected park name on page
 selectedParkNameEl.textContent = selectedParkName;
@@ -295,8 +278,7 @@ parkSelected.style.display = "block";
 }
 
   function fetchForecastData() {
-    // You need to define lat and lon values for the forecast data
-    // For now, I'm assuming some default values, but you may need to replace these with the actual latitude and longitude of the selected park.
+.
 
     var apiKey = "a10bc788276a7c7ca6f89df126f2779a";
     var fiveDayUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
@@ -311,7 +293,6 @@ parkSelected.style.display = "block";
       .then(function (data) {
         forecastContainer.innerHTML = "";
 
-        // console.log(data)
 
         var filteredObjects = data.list.filter(function (item) {
           return item.dt_txt.endsWith("15:00:00");
@@ -409,11 +390,7 @@ parkSelected.style.display = "block";
   $("#fav").on("click",".saved-park-btn", function () {
     console.log($(this));
     displayOnePark($(this).attr("data-parkcode"))
-    // var selectedParkName = $(this).text();
-    // display the selected park name on page
-    // selectedParkNameEl.textContent = selectedParkName;
 
-    // Fetch forecast data
     fetchForecastData();
 
     searchResults.style.display = "none";
