@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // "Save Park" button functionality
-  $("#save-park-btn").on("click", function () {
+  $("#fav").on("click",".saved-park-btn", function () {
     var selectedParkName = selectedParkNameEl.textContent;
     var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
 
