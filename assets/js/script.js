@@ -28,23 +28,23 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
     state = $("#state-name").val().trim().toLowerCase();
-    
+
     if (state === "") {
       showModal();
     } else {
       getDataAPI();
     }
   });
-  
-  $(document).on('keypress',function(e){
-    if(e.which == 13){
+
+  $(document).on('keypress', function (e) {
+    if (e.which == 13) {
       state = $("#state-name").val().trim().toLowerCase();
       if (state === "") {
         showModal();
        }else {
         getDataAPI();
       }
-    
+
     }
   });
 
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   function getDataAPI() {
     parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks;
-    
+
     fetch(parksURL)
       .then(function (response) {
         return response.json();
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedParkNameEl.textContent = storedSelectedPark;
 
             // Fetch forecast data
-            
+
           }
         }
       });
