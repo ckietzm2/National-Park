@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(224, 224, 213);
+    background-color: rgb(240, 240, 231);
 }
 
 header nav {
@@ -16,13 +16,13 @@ header nav {
     font-family: monospace;
 }
 
+main {
+    margin: 10px;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
-}
-
-main {
-    margin: 10px;
 }
 
 #state-name {
@@ -35,23 +35,24 @@ main {
     margin: 10px;
     padding: 0 10px;
     color: whitesmoke;
-
 }
 
 #save-park-btn {
     border: none;
-    color: white;
-    padding: 20px;
+    color: black;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 15px;
+    margin: 5px 5px;
     border-radius: 50px;
+    background-color: tan;
   }
 
 
-.park-btn {
+.park-btn,
+.saved-park-btn {
     background-color: olive !important;
     color: black;
     border-radius: 10px;
@@ -59,10 +60,13 @@ main {
     margin: 5px;
 }
 
-
-h5 {
-    display: flex;
-
+.forecast {
+    font-size: 20px;
+    text-align: justify;
+    font-family: monospace;
+    border: darkgreen 7px double;
+    display: inline-block;
+    padding: 5;
 }
 
 .park-details {
@@ -89,35 +93,24 @@ section h2 {
     display: inline-block;
 }
 
-
-
-#fav-header {
+#fav-header,
+#search-header {
     font-size: 40px;
-    text-align: right;
+    text-align: justify;
     font-family: monospace;
     border: darkgreen 10px double;
     display: inline-block;
     padding: 10px;
-    float: right;   
 }
 
-
-#fav-list ul {
-    text-align: right;
-    font-family: monospace;
-    padding-top: 120px;
-    float: end;
+.five-day-forecast {
+    display: flex;
+    flex-direction: row;
 }
 
-#button {
-    border: none;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    border-radius: 50px;
-  }
-
+.card-column {
+    padding: 0.5rem;
+    transition: flex-basis 500ms linear;
+    margin: 0.5rem;
+    background-color: #b1cd79;
+}

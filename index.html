@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>National Park USA</title>
   <link rel="stylesheet" href="./assets/css/style.css">
-  <!-- Remove the incorrect </Link> tag -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -17,24 +16,20 @@
     <button id="search-btn" type="submit">Search</button>
 
     <nav class="flex justify-center space-x-4">
-      <a href="file:///Users/taylor/Desktop/bootcamp-homework/National-Park/index.html?"
+      <a href="https://ckietzm2.github.io/National-Park/"
         class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Home</a>
-      <a href="https://tailwindcomponents.com/component/search-bar"
-        class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Favorites</a>
     </nav>
   </header>
 
   <main>
-
-    <section>
-      <section class="search-results">
-        <h2 id="search-header" class="text-4xl">Search Results</h2>
+    <section class="container">
+      <div class="search-results">
+        <h2 id="search-header">Search Results</h2>
         <div id="card-list">
           <ul id="park-list"></ul>
         </div>
-      </section>
-      <aside id="fav-list">
-
+      </div>
+      <div id="fav-list">
         <h2 id="fav-header">Favorties★</h2>
         <div>
           <div id="selected-park-info">
@@ -45,43 +40,31 @@
             <span id="selectedParkName"></span>
             
 
+            <button type="button" id="fav-1"></button>
 
       
             <button type="button" id="fav-1">fav 1</button>
             <button type="button">fav 2</button>
             <button type="button">fav 3</button>
-
-
-
           </ul>
         </div>
-
-      </aside>
+      </div>
     </section>
     <section>
       <div class="park-selected">
         <div>
           <h5 class="text-2xl"><span><img id="park-img" src="" alt="Park Image"></span>Park Name</h5>
-
-
-
           <button id="save-park-btn" type="button" class="bg-sky-500 hover:bg-sky-700 ...">Add To Favorites</button>
           <ul class="park-details">
-
-  
             <p id="desc">Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
               tempora, nulla, ratione, eum unde porro cumque temporibus modi iste animi eveniet ipsa ea?
               Ratione cumque error inventore placeat modi ipsam.</p>
-
-
-
             <p id="park-url">Website: www.test.test</p>
             <p id="park-hours">Park hours: 9:00AM to 5:00PM</p>
             <p id="entrance-fee">Park entrance fee: $10</p>
-
           </ul>
         </div>
-        <div>
+        <div class="weather">
           <h5 class="forecast">5-Day Forecast:</h5>
           <div class="five-day-forecast">
           </div>
