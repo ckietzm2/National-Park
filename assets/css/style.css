@@ -2,6 +2,11 @@ body {
     background-color: rgb(240, 240, 231);
 }
 
+#my-modal,
+#my-modal-save {
+    display: none;
+}
+
 header nav {
     text-align: center;
     font-family: monospace;
@@ -27,14 +32,18 @@ main {
 
 #state-name {
     margin-top: 10px;
+    border-radius: 15px;
+    font-size: 20px;
 }
 
 #search-btn {
-    background-color: rgb(83, 45, 45);
+    background-color: coral;
     text-align: end;
     margin: 10px;
     padding: 0 10px;
     color: whitesmoke;
+    border-radius: 50px;
+    font-size: 15px;
 }
 
 #save-park-btn {
@@ -47,19 +56,36 @@ main {
     font-size: 15px;
     margin: 5px 5px;
     border-radius: 50px;
-    background-color: tan;
+    background-color: coral;
   }
 
+#remove-park-btn{
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 5px 5px;
+    border-radius: 50px;
+    background-color: tan;
+}
 
 .park-btn,
 .saved-park-btn {
-    background-color: olive !important;
+    background-color: #8DB04C !important;
     color: black;
     border-radius: 10px;
     padding: 5px;
     margin: 5px;
 }
 
+#park-image {
+    max-width: 35%;
+    height: auto;
+
+}
 .forecast {
     font-size: 20px;
     text-align: justify;
