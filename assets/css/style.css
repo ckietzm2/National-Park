@@ -59,6 +59,18 @@ main {
     background-color: coral;
   }
 
+#remove-park-btn{
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 5px 5px;
+    border-radius: 50px;
+    background-color: tan;
+}
 
 .park-btn,
 .saved-park-btn {
@@ -71,7 +83,7 @@ main {
 
 #park-image {
     max-width: 35%;
-    length: auto;
+    height: auto;
 
 }
 .forecast {
