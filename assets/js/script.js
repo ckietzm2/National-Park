@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     state = $("#state-name").val().trim().toLowerCase();
     
     if (state === "") {
-      alert("Please enter valid state initials");
+      showModal();
     } else {
       getDataAPI();
     }
@@ -40,13 +40,31 @@ document.addEventListener("DOMContentLoaded", function () {
     if(e.which == 13){
       state = $("#state-name").val().trim().toLowerCase();
       if (state === "") {
-        alert("Please enter valid state initials");
+        showModal();
        }else {
         getDataAPI();
       }
     
     }
   });
+
+  function showModal(modal) {
+    var modal = document.getElementById("my-modal");
+    modal.style.display = "block";
+
+    document.getElementById('ok-btn').addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  }
+
+  function showModalSave() {
+    var modal = document.getElementById("my-modal-save");
+    modal.style.display = "block";
+
+    document.getElementById('ok-btn-save').addEventListener("click", function () {
+      modal.style.display = "none";
+    });
+  }
   
   function getDataAPI() {
     parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks;
@@ -176,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (data) {
         forecastContainer.innerHTML = "";
 
-        console.log(data)
+        // console.log(data)
 
         var filteredObjects = data.list.filter(function (item) {
           return item.dt_txt.endsWith("15:00:00");
@@ -217,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       })
       .catch(function (error) {
-        console.error('There was a problem with the fetch operation:', error);
+        // console.error('There was a problem with the fetch operation:', error);
       });
   }
 
@@ -234,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Render the saved park buttons
       renderSavedParks();
     } else {
-      alert("Park already saved!");
+      showModalSave();
     }
   });
 
