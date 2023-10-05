@@ -64,6 +64,11 @@ main {
     margin: 5px;
 }
 
+#park-image {
+    max-width: 35%;
+    length: auto;
+
+}
 .forecast {
     font-size: 20px;
     text-align: justify;
