@@ -1,11 +1,13 @@
-var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX";
-var selectedParkNameEl = document.getElementById("selectedParkName");
-var forecastContainer = document.querySelector(".five-day-forecast");
-var lat = 0
-var lon = 0
+// var lat = 0
+// var lon = 0
+// 
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  var apiKeyParks = "1yYLC0tdepLh30737lZ2VQ3b8bkBAXVnX1RJ6UHX";
+  var selectedParkNameEl = document.getElementById("selectedParkName");
+  var forecastContainer = document.querySelector(".five-day-forecast");
   var state = "";
   var parkList = $("#park-list");
   var savedStates = [];
@@ -85,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             button.text(parkNames);
             button.attr("type", "button");
+            button.attr("data-parkcode", data.data[i].parkCode);
             button.addClass("park-btn");
 
             var listItem = $("<li>").append(button);
@@ -92,77 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             parkList.append(listItem);
           }
 
-            $(".park-btn").on("click", function (event) {
-              var selectedParkName = $(this).text();
-              // store in local storage
-              localStorage.setItem('selectedPark', selectedParkName);
-  
-              var selectedParkData = data.data.find(function (park) {
-                return park.fullName === selectedParkName;
-              });
-  
-              if (selectedParkData) {
-                descriptionPark = selectedParkData.description
-                parkWebsite = selectedParkData.url
-                
-                parkHoursLength = selectedParkData.operatingHours.length
-                parkFeesLength = selectedParkData.entranceFees.length
-                parkImage = selectedParkData.images[0].url
-                parkImageCredit = selectedParkData.images[0].credit
-                parkImageTitle = selectedParkData.images[0].title
-
-                console.log(parkImage)
-                
-                if (parkHoursLength===0) {
-                  
-                  $("#park-hours").text("Park Hours: No Hours Listed")
-
-                }
-                if (parkHoursLength>0) {
-                  parkHours = selectedParkData.operatingHours[0].description
-                  $("#park-hours").text("Park Hours: " +parkHours)
-                }
-
-                if (parkFeesLength===0) {
-                  
-                  $("#entrance-fee").text("Entrance Fees: No Fees Listed")
-
-                }
-                if (parkFeesLength>0) {
-                  parkFees = selectedParkData.entranceFees[0].cost
-                  $("#entrance-fee").text("Entrance Fees: " +parkFees)
-                }
-                
-
-
-                parkFullName = selectedParkData.fullName
-                
-                $("#park-image").attr("src", selectedParkData.images[0].url);
-                $("#image-info").text(parkImageCredit + parkImageTitle);
-                $("#desc").text(descriptionPark)
-                $("#park-url").attr("href", selectedParkData.url);
-                $("#park-url").text("Park Website: " + parkWebsite);
-                $(".text-2xl").text(parkFullName)
-                lat = selectedParkData.latitude;
-                lon = selectedParkData.longitude;
-                lat = parseFloat(lat)
-                lon = parseFloat(lon)
-                lat = lat.toFixed(4)
-                lon = lon.toFixed(4)
-              } else {
-  
-              }
-
-            // display the selected park name on page
-            selectedParkNameEl.textContent = selectedParkName;
-
-            // Fetch forecast data
-            fetchForecastData();
-            console.log(lat);
-            searchResults.style.display = "none";
-            parkSelected.style.display = "block";
-            event.preventDefault();
-          });
+         
 
           // check if there is a selected park in local storage
           var storedSelectedPark = localStorage.getItem('selectedPark');
@@ -176,6 +109,190 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   }
+
+  $("#park-list").on("click",".park-btn", function (event) {
+    event.preventDefault();
+    console.log($(this).text(), $(this).attr("data-parkcode"));
+    var urlByParkCode = "https://developer.nps.gov/api/v1/parks?parkCode=" + $(this).attr("data-parkcode") + "&api_key=" + apiKeyParks;
+
+    fetch(urlByParkCode)
+    .then(function(res){
+      return res.json();
+    })
+    .then(function(data){
+      console.log(data);
+  
+    var selectedParkName = $(this).text();
+    // store in local storage
+    localStorage.setItem('selectedPark', selectedParkName);
+
+    // var selectedParkData = data.data.find(function (park) {
+    //   return park.fullName === selectedParkName;
+    // });
+
+    // console.log(selectedParkData);
+
+    var selectedParkData = data.data[0];
+
+    var addToFavBtn = $("#save-park-btn");
+    addToFavBtn.attr("data-name", selectedParkData.fullName);
+    addToFavBtn.attr("data-parkcode", selectedParkData.parkCode);
+
+    // if (selectedParkData) {
+      descriptionPark = selectedParkData.description
+      parkWebsite = selectedParkData.url
+      
+      parkHoursLength = selectedParkData.operatingHours.length
+      parkFeesLength = selectedParkData.entranceFees.length
+      parkImage = selectedParkData.images[0].url
+      parkImageCredit = selectedParkData.images[0].credit
+      parkImageTitle = selectedParkData.images[0].title
+
+      console.log(parkImage)
+      
+      if (parkHoursLength===0) {
+        
+        $("#park-hours").text("Park Hours: No Hours Listed")
+
+      }
+      if (parkHoursLength>0) {
+        parkHours = selectedParkData.operatingHours[0].description
+        $("#park-hours").text("Park Hours: " +parkHours)
+      }
+
+      if (parkFeesLength===0) {
+        
+        $("#entrance-fee").text("Entrance Fees: No Fees Listed")
+
+      }
+      if (parkFeesLength>0) {
+        parkFees = selectedParkData.entranceFees[0].cost
+        $("#entrance-fee").text("Entrance Fees: " +parkFees)
+      }
+      
+
+
+      parkFullName = selectedParkData.fullName
+      
+      $("#park-image").attr("src", selectedParkData.images[0].url);
+      $("#image-info").text(parkImageCredit + parkImageTitle);
+      $("#desc").text(descriptionPark)
+      $("#park-url").attr("href", selectedParkData.url);
+      $("#park-url").text("Park Website: " + parkWebsite);
+      $(".text-2xl").text(parkFullName)
+      lat = selectedParkData.latitude;
+      lon = selectedParkData.longitude;
+      lat = parseFloat(lat)
+      lon = parseFloat(lon)
+      lat = lat.toFixed(4)
+      lon = lon.toFixed(4)
+    // } else {
+
+    // }
+
+  // display the selected park name on page
+  selectedParkNameEl.textContent = selectedParkName;
+
+  // Fetch forecast data
+  fetchForecastData();
+  console.log(lat);
+  searchResults.style.display = "none";
+  parkSelected.style.display = "block";
+
+})
+
+});
+
+
+function displayOnePark(parkcode) {
+  var urlByParkCode = "https://developer.nps.gov/api/v1/parks?parkCode=" + parkcode + "&api_key=" + apiKeyParks;
+
+  fetch(urlByParkCode)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(data){
+    console.log(data);
+
+  var selectedParkName = $(this).text();
+  // store in local storage
+  localStorage.setItem('selectedPark', selectedParkName);
+
+  // var selectedParkData = data.data.find(function (park) {
+  //   return park.fullName === selectedParkName;
+  // });
+
+  // console.log(selectedParkData);
+
+  var selectedParkData = data.data[0];
+
+  var addToFavBtn = $("#save-park-btn");
+  addToFavBtn.attr("data-name", selectedParkData.fullName);
+  addToFavBtn.attr("data-parkcode", selectedParkData.parkCode);
+
+  // if (selectedParkData) {
+    descriptionPark = selectedParkData.description
+    parkWebsite = selectedParkData.url
+    
+    parkHoursLength = selectedParkData.operatingHours.length
+    parkFeesLength = selectedParkData.entranceFees.length
+    parkImage = selectedParkData.images[0].url
+    parkImageCredit = selectedParkData.images[0].credit
+    parkImageTitle = selectedParkData.images[0].title
+
+    console.log(parkImage)
+    
+    if (parkHoursLength===0) {
+      
+      $("#park-hours").text("Park Hours: No Hours Listed")
+
+    }
+    if (parkHoursLength>0) {
+      parkHours = selectedParkData.operatingHours[0].description
+      $("#park-hours").text("Park Hours: " +parkHours)
+    }
+
+    if (parkFeesLength===0) {
+      
+      $("#entrance-fee").text("Entrance Fees: No Fees Listed")
+
+    }
+    if (parkFeesLength>0) {
+      parkFees = selectedParkData.entranceFees[0].cost
+      $("#entrance-fee").text("Entrance Fees: " +parkFees)
+    }
+    
+
+
+    parkFullName = selectedParkData.fullName
+    
+    $("#park-image").attr("src", selectedParkData.images[0].url);
+    $("#image-info").text(parkImageCredit + parkImageTitle);
+    $("#desc").text(descriptionPark)
+    $("#park-url").attr("href", selectedParkData.url);
+    $("#park-url").text("Park Website: " + parkWebsite);
+    $(".text-2xl").text(parkFullName)
+    lat = selectedParkData.latitude;
+    lon = selectedParkData.longitude;
+    lat = parseFloat(lat)
+    lon = parseFloat(lon)
+    lat = lat.toFixed(4)
+    lon = lon.toFixed(4)
+  // } else {
+
+  // }
+
+// display the selected park name on page
+selectedParkNameEl.textContent = selectedParkName;
+
+// Fetch forecast data
+fetchForecastData();
+console.log(lat);
+searchResults.style.display = "none";
+parkSelected.style.display = "block";
+
+})
+}
 
   function fetchForecastData() {
     // You need to define lat and lon values for the forecast data
@@ -240,15 +357,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // "Save Park" button functionality
-  $("#fav").on("click",".saved-park-btn", function () {
-    var selectedParkName = selectedParkNameEl.textContent;
+  $("#save-park-btn").on("click", function (e) {
+    var selectedParkName = $(this).attr("data-name");
+    console.log($(this).attr("data-name"));
     var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
 
     // Check if the park is already saved
     if (!savedParks.includes(selectedParkName)) {
-      savedParks.push(selectedParkName);
+      var parkInfo = {
+        name : selectedParkName,
+        parkcode: $(this).attr("data-parkcode")
+      }
+      savedParks.push(parkInfo);
       localStorage.setItem('savedParks', JSON.stringify(savedParks));
-
       // Render the saved park buttons
       renderSavedParks();
     } else {
@@ -261,10 +382,11 @@ document.addEventListener("DOMContentLoaded", function () {
     favList.empty();
     var savedParks = JSON.parse(localStorage.getItem('savedParks')) || [];
 
-    savedParks.forEach(function (parkName) {
+    savedParks.forEach(function (parkInfo) {
       var button = $("<button>");
-      button.text(parkName);
+      button.text(parkInfo.name);
       button.attr("type", "button");
+      button.attr("data-parkcode", parkInfo.parkcode);
       button.addClass("saved-park-btn");
 
       var listItem = $("<li>").append(button);
@@ -273,18 +395,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add click event for saved park buttons
-    $(".saved-park-btn").on("click", function () {
-      var selectedParkName = $(this).text();
-      // display the selected park name on page
-      // selectedParkNameEl.textContent = selectedParkName;
-
-      // Fetch forecast data
-      fetchForecastData();
-
-      searchResults.style.display = "none";
-      parkSelected.style.display = "block";
-    });
+  
   }
+
+  $("#fav").on("click",".saved-park-btn", function () {
+    console.log($(this));
+    displayOnePark($(this).attr("data-parkcode"))
+    // var selectedParkName = $(this).text();
+    // display the selected park name on page
+    // selectedParkNameEl.textContent = selectedParkName;
+
+    // Fetch forecast data
+    fetchForecastData();
+
+    searchResults.style.display = "none";
+    parkSelected.style.display = "block";
+  });
 
   // Render saved parks on page load
   renderSavedParks();
