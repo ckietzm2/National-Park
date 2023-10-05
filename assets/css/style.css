@@ -2,6 +2,11 @@ body {
     background-color: rgb(240, 240, 231);
 }
 
+#my-modal,
+#my-modal-save {
+    display: none;
+}
+
 header nav {
     text-align: center;
     font-family: monospace;
