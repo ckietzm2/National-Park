@@ -98,6 +98,8 @@ section h2 {
     display: inline-block;
 }
 
+#park-img {}
+
 #fav-header,
 #search-header {
     font-size: 40px;
