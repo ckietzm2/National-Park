@@ -2,74 +2,74 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>National Park USA</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Park USA</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-  <header id="header">
-    <h1 class="text-6xl">National Park Visit</h1>
-    <input id="state-name" type="text" maxlength="2" placeholder="State Initials"></input>
-    <button id="search-btn" type="submit">Search</button>
+    <header id="header">
+        <h1 class="text-6xl">National Park Visit</h1>
+        <input id="state-name" type="text" maxlength="2" placeholder="State Initials"></input>
+        <button id="search-btn" type="submit" class="bg-sky-500 hover:bg-sky-700 ...">Search</button>
 
-    <nav class="flex justify-center space-x-4">
-      <a href="https://ckietzm2.github.io/National-Park/"
-        class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Home</a>
-    </nav>
-  </header>
+        <nav class="flex justify-center space-x-4">
+            <a href="./index.html" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Home</a>
+        </nav>
+    </header>
 
-  <main>
-    <section class="container">
-      <div class="search-results">
-        <h2 id="search-header">Search Results</h2>
-        <div id="card-list">
-          <ul id="park-list"></ul>
-        </div>
-      </div>
-      <div id="fav-list">
-        <h2 id="fav-header">Favorties★</h2>
-        <div>
-          <ul id="fav">
-            <span id="selectedParkName"></span>
+    <main>
+        <section class="container">
+            <div class="search-results">
+                <h2 id="search-header">Search Results</h2>
+                <div id="card-list">
+                    <ul id="park-list"></ul>
+                </div>
+            </div>
+            <div id="fav-list">
+                <h2 id="fav-header">Favorties★</h2>
+                <div>
+                    <ul id="fav">
+                        <span id="selectedParkName"></span>
 
-            <button type="button" id="fav-1"></button>
+                        <button type="button" id="fav-1"></button>
 
-            <button type="button">fav 2</button>
-            <button type="button">fav 3</button>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="park-selected">
-        <div>
-          <h5 class="text-2xl"><span><img id="park-img" src="" alt="Park Image"></span>Park Name</h5>
-          <button id="save-park-btn" type="button" class="bg-sky-500 hover:bg-sky-700 ...">Add To Favorites</button>
-          <ul class="park-details">
-            <p id="desc">Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-              tempora, nulla, ratione, eum unde porro cumque temporibus modi iste animi eveniet ipsa ea?
-              Ratione cumque error inventore placeat modi ipsam.</p>
-            <p id="park-url">Website: www.test.test</p>
-            <p id="park-hours">Park hours: 9:00AM to 5:00PM</p>
-            <p id="entrance-fee">Park entrance fee: $10</p>
-          </ul>
-        </div>
-        <div class="weather">
-          <h5 class="forecast">5-Day Forecast:</h5>
-          <div class="five-day-forecast">
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+                        <button type="button">fav 2</button>
+                        <button type="button">fav 3</button>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="park-selected">
+                <div>
+                    <h5 class="text-2xl"><span><img id="park-img" src="" alt="Park Image"></span>Park Name</h5>
+                    <button id="save-park-btn" type="button" class="bg-sky-500 hover:bg-sky-700 ...">Add To
+                        Favorites</button>
+                    <ul class="park-details">
+                        <p id="desc">Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+                            tempora, nulla, ratione, eum unde porro cumque temporibus modi iste animi eveniet ipsa ea?
+                            Ratione cumque error inventore placeat modi ipsam.</p>
+                        <p id="park-url">Website: www.test.test</p>
+                        <p id="park-hours">Park hours: 9:00AM to 5:00PM</p>
+                        <p id="entrance-fee">Park entrance fee: $10</p>
+                    </ul>
+                </div>
+                <div class="weather">
+                    <h5 class="forecast">5-Day Forecast:</h5>
+                    <div class="five-day-forecast">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </body>
 
 </html>

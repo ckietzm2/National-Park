@@ -27,14 +27,18 @@ main {
 
 #state-name {
     margin-top: 10px;
+    border-radius: 15px;
+    font-size: 20px;
 }
 
 #search-btn {
-    background-color: rgb(83, 45, 45);
+    background-color: coral;
     text-align: end;
     margin: 10px;
     padding: 0 10px;
     color: whitesmoke;
+    border-radius: 50px;
+    font-size: 15px;
 }
 
 #save-park-btn {
@@ -47,13 +51,13 @@ main {
     font-size: 15px;
     margin: 5px 5px;
     border-radius: 50px;
-    background-color: tan;
+    background-color: coral;
   }
 
 
 .park-btn,
 .saved-park-btn {
-    background-color: olive !important;
+    background-color: #8DB04C !important;
     color: black;
     border-radius: 10px;
     padding: 5px;

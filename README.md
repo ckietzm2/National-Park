@@ -17,6 +17,7 @@ Get Park Details: Click on a park's name to access information.
 To the GitLab on this project click the link below
 Link to webpage: 
 
+
 ## Credits
 Classmates on the Project:
 Cody Kietzman

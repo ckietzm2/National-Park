@@ -23,29 +23,29 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#search-btn").on("click", function (event) {
     event.preventDefault();
     state = $("#state-name").val().trim().toLowerCase();
-    
+
     if (state === "") {
       alert("Please enter valid state initials");
     } else {
       getDataAPI();
     }
   });
-  
-  $(document).on('keypress',function(e){
-    if(e.which == 13){
+
+  $(document).on('keypress', function (e) {
+    if (e.which == 13) {
       state = $("#state-name").val().trim().toLowerCase();
       if (state === "") {
         alert("Please enter valid state initials");
-       }else {
+      } else {
         getDataAPI();
       }
-    
+
     }
   });
-  
+
   function getDataAPI() {
     parksURL = 'https://developer.nps.gov/api/v1/parks?stateCode=' + state + '&api_key=' + apiKeyParks;
-    
+
     fetch(parksURL)
       .then(function (response) {
         return response.json();
@@ -69,36 +69,36 @@ document.addEventListener("DOMContentLoaded", function () {
             parkList.append(listItem);
           }
 
-            $(".park-btn").on("click", function (event) {
-              var selectedParkName = $(this).text();
-              // store in local storage
-              localStorage.setItem('selectedPark', selectedParkName);
-  
-              var selectedParkData = data.data.find(function (park) {
-                return park.fullName === selectedParkName;
-              });
-  
-              if (selectedParkData) {
-                descriptionPark = selectedParkData.description
-                parkWebsite = selectedParkData.url
-                parkFees = selectedParkData.entranceFees
-                parkHours = selectedParkData.operatingHours
-                parkFullName = selectedParkData.fullName
-                
-                $("#entrance-fee").text(parkFees)
-                $("#desc").text(descriptionPark)
-                $("#park-url").text(parkWebsite)
-                $("#park-hours").text(parkHours)
-                $(".text-2xl").text(parkFullName)
-                lat = selectedParkData.latitude;
-                lon = selectedParkData.longitude;
-                lat = parseFloat(lat)
-                lon = parseFloat(lon)
-                lat = lat.toFixed(4)
-                lon = lon.toFixed(4)
-              } else {
-  
-              }
+          $(".park-btn").on("click", function (event) {
+            var selectedParkName = $(this).text();
+            // store in local storage
+            localStorage.setItem('selectedPark', selectedParkName);
+
+            var selectedParkData = data.data.find(function (park) {
+              return park.fullName === selectedParkName;
+            });
+
+            if (selectedParkData) {
+              descriptionPark = selectedParkData.description
+              parkWebsite = selectedParkData.url
+              parkFees = selectedParkData.entranceFees
+              parkHours = selectedParkData.operatingHours
+              parkFullName = selectedParkData.fullName
+
+              $("#entrance-fee").text(parkFees)
+              $("#desc").text(descriptionPark)
+              $("#park-url").text(parkWebsite)
+              $("#park-hours").text(parkHours)
+              $(".text-2xl").text(parkFullName)
+              lat = selectedParkData.latitude;
+              lon = selectedParkData.longitude;
+              lat = parseFloat(lat)
+              lon = parseFloat(lon)
+              lat = lat.toFixed(4)
+              lon = lon.toFixed(4)
+            } else {
+
+            }
 
             // display the selected park name on page
             selectedParkNameEl.textContent = selectedParkName;
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedParkNameEl.textContent = storedSelectedPark;
 
             // Fetch forecast data
-            
+
           }
         }
       });
