@@ -17,7 +17,8 @@ Explore Parks: Browse through the list of national parks in the selected state.
 Get Park Details: Click on a park's name to access information.
 
 To the GitLab on this project click the link below
-Link to webpage: 
+Link to webpage: https://ckietzm2.github.io/National-Park/
+![Screenshot 2023-10-05 141721](https://github.com/ckietzm2/National-Park/assets/143734933/b3ee8d8a-e146-43e5-859f-a02917d5bb83)
 
 
 ## Credits
