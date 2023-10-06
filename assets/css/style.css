@@ -1,5 +1,6 @@
 body {
     background-color: rgb(240, 240, 231);
+    font-family: monospace;
 }
 
 #my-modal,
@@ -34,6 +35,7 @@ main {
     margin-top: 10px;
     border-radius: 15px;
     font-size: 20px;
+    padding-left: 10px;
 }
 
 #search-btn {
@@ -59,19 +61,6 @@ main {
     background-color: coral;
   }
 
-#remove-park-btn{
-    border: none;
-    color: black;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 5px 5px;
-    border-radius: 50px;
-    background-color: tan;
-}
-
 .park-btn,
 .saved-park-btn {
     background-color: #8DB04C !important;
@@ -79,6 +68,7 @@ main {
     border-radius: 10px;
     padding: 5px;
     margin: 5px;
+    font-size: 20px;
 }
 
 #park-image {
@@ -97,6 +87,7 @@ main {
 
 .park-details {
     padding: 10px;
+    font-size: 15px;
 }
 
 p {
@@ -119,8 +110,6 @@ section h2 {
     display: inline-block;
 }
 
-#park-img {}
-
 #fav-header,
 #search-header {
     font-size: 40px;
@@ -141,4 +130,8 @@ section h2 {
     transition: flex-basis 500ms linear;
     margin: 0.5rem;
     background-color: #b1cd79;
+}
+
+.five-day-item {
+    font-size: 15px;
 }
